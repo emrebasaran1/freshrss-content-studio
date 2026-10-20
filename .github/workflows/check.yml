@@ -1,0 +1,27 @@
+name: Checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install PHP test dependencies
+        run: sudo apt-get update && sudo apt-get install -y php-cli php-xml php-mbstring php-curl
+      - name: PHP syntax
+        run: find xExtension-ContentStudio tests -type f \( -name '*.php' -o -name '*.phtml' \) -print0 | xargs -0 -n1 php -l
+      - name: JavaScript syntax and behavior
+        run: |
+          for file in xExtension-ContentStudio/static/*.js; do node --check "$file"; done
+          node tests/core.test.js
+      - name: Reader boundaries and extraction
+        run: |
+          php tests/reader.test.php
+          php tests/controller.test.php
+          php tests/settings.test.php
+      - name: Package and translation checks
+        run: python3 tools/check_release.py
