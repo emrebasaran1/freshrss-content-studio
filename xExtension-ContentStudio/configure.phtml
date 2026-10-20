@@ -1,0 +1,19 @@
+<?php
+/** @var ContentStudioExtension $this */
+$c=$this->config();$m=ContentStudioExtension::messages($this->language());$t=static fn($k)=>htmlspecialchars($m[$k]??$k,ENT_QUOTES,'UTF-8');$esc=static fn($s)=>htmlspecialchars((string)$s,ENT_QUOTES,'UTF-8');
+$categories=FreshRSS_Factory::createCategoryDao()->listCategories();
+?>
+<form method="post" action="<?= _url('extension','configure','e',$this->getName()) ?>">
+<input type="hidden" name="_csrf" value="<?= FreshRSS_Auth::csrfToken() ?>">
+<h2>Content Studio</h2><p><?= $t('setup_help') ?></p>
+<p><label><?= $t('language') ?> <select name="language"><?php foreach(['auto'=>'Auto','en'=>'English','tr'=>'Türkçe','de'=>'Deutsch','fr'=>'Français','es'=>'Español','zh'=>'简体中文'] as $id=>$label): ?><option value="<?= $id ?>" <?= $c['language']===$id?'selected':'' ?>><?= $label ?></option><?php endforeach ?></select></label></p>
+<?php foreach(['news','youtube','newsletters','blogs'] as $kind): ?>
+<p><label><?= $t($kind) ?> <select name="<?= $kind ?>"><option value="0">—</option><?php foreach($categories as $category): ?><option value="<?= $category->id() ?>" <?= (int)$c[$kind]===$category->id()?'selected':'' ?>><?= $esc($category->name()) ?></option><?php endforeach ?></select></label></p>
+<?php endforeach ?>
+<p><label><?= $t('bookmark_url') ?> <input type="url" name="linkding" value="<?= $esc($c['linkding']) ?>" placeholder="https://bookmarks.example.org/bookmarks/new"></label></p>
+<p><label><?= $t('download_url') ?> <input type="url" name="metube" value="<?= $esc($c['metube']) ?>" placeholder="https://downloads.example.org"></label></p>
+<?php foreach(['full_text','deduplicate','hide_podcasts'] as $key): ?><p><label><input type="checkbox" name="<?= $key ?>" value="1" <?= $c[$key]?'checked':'' ?>> <?= $t($key==='full_text'?'full_text_setting':$key) ?></label></p><?php endforeach ?>
+<p><label><?= $t('threshold') ?> <input type="number" name="threshold" min="0.4" max="0.95" step="0.01" value="<?= $esc($c['threshold']) ?>"></label></p>
+<?php foreach(['blocked','interested','reader_hosts','article_xpath'] as $key): ?><p><label><?= $t($key) ?><br><textarea name="<?= $key ?>" rows="3" cols="70"><?= $esc($c[$key]) ?></textarea></label></p><?php endforeach ?>
+<p><?= $t('reader_help') ?></p><p><button type="submit" class="btn btn-important"><?= $t('save') ?></button></p>
+</form>

@@ -1,0 +1,8 @@
+{
+  "name": "Content Studio",
+  "author": "Content Studio contributors",
+  "description": "Five appearances, four content streams, focused reading and deliberate video playback.",
+  "version": "0.1.0",
+  "entrypoint": "ContentStudio",
+  "type": "user"
+}
