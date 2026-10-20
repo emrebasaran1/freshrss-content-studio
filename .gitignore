@@ -1,0 +1,15 @@
+.DS_Store
+__pycache__/
+*.pyc
+node_modules/
+vendor/
+.env
+.env.*
+data/
+*.sqlite
+*.sqlite3
+*.db
+*.log
+*.opml
+cookies*
+dist/

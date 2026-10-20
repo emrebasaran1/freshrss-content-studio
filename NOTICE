@@ -1,0 +1,16 @@
+Content Studio for FreshRSS — 0.1.0
+Copyright (C) 2026 Content Studio contributors
+SPDX-License-Identifier: GPL-3.0-or-later
+
+This distribution adapts the personal Content Hub appearance stylesheet into a
+portable FreshRSS user extension. Standalone reader, configuration, four-stream
+navigation, localization and interaction code were prepared on 2026-10-20.
+
+Youlag by civilblur (https://github.com/civilblur/youlag) inspired the focused
+video and article-reading approach. Youlag's source/minified bundle is not
+redistributed here. Its project is licensed under GPLv3; consult upstream for
+its own notices. Compatibility CSS selector names do not bundle its assets.
+
+FreshRSS is a separate project: https://github.com/FreshRSS/FreshRSS
+No FreshRSS installation, dependency, watch artwork, trademark logo or licensed
+font is included. Watch-inspired theme names imply no manufacturer affiliation.
