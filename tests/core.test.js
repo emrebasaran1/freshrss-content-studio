@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict');
+const core=require('../xExtension-ContentStudio/static/core.js');
+assert.equal(core.videoId('https://www.youtube.com/watch?v=M7lc1UVf-VE'),'M7lc1UVf-VE');
+assert.equal(core.videoId('https://youtu.be/M7lc1UVf-VE'),'M7lc1UVf-VE');
+assert.equal(core.videoId('https://youtube.com.attacker.example/watch?v=M7lc1UVf-VE'),null);
+assert.equal(core.videoId('javascript:alert(1)'),null);
+assert.equal(core.similar({title:'Research team releases new battery study'},{title:'New battery study released by research team'}),true);
+assert.equal(core.similar({title:'Research team releases new battery study'},{title:'City garden opens with community workshops'}),false);
+assert.equal(core.similar({title:'Central bank cuts rate to 20 percent'},{title:'Central bank cuts rate to 25 percent'}),false);
+assert.equal(core.similar({title:'Research team releases new battery study',date:1000},{title:'New battery study released by research team',date:150000000}),false);
+assert.equal(core.blocked('Spor ve bilim',[],['spor'],[]),true);
+assert.equal(core.blocked('Spor ve bilim',[],['spor'],['bilim']),false);
+assert.equal(core.blocked('Transportation projects',[],['sport'],[]),false);
+console.log('11 core behavior checks passed');
