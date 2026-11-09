@@ -90,3 +90,10 @@ html[data-studio-kind=youtube] .thumbnail img{width:100%!important;aspect-ratio:
 
 /* FreshRSS 1.30 date separators ("Received today …") sit on the page canvas, not in a dark band. */
 :root[data-rss-styled] #stream>.transition{background:transparent!important;border:0!important;box-shadow:none!important;color:var(--rss-page-ink)!important;}
+
+/* FreshRSS 1.30 renders covers as a header item (li.item.thumbnail); keep it visible while the
+   other header items stay hidden. */
+.studio-card .flux_header>.item.thumbnail{display:flex!important;order:-3;justify-content:center;width:100%!important;flex-basis:100%;float:none!important;height:auto!important;margin:0!important;padding:0!important;}
+.studio-card .flux_header>.item.thumbnail img{display:block!important;background:none!important;}
+/* The video grid flows continuously; per-day separators would leave half-empty rows. */
+html[data-studio-kind=youtube] #stream>.transition{display:none!important;}

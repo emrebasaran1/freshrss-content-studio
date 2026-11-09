@@ -201,3 +201,7 @@
 /* Luxury: the same 20 px case geometry in every mode. */
 :root[data-rss-styled][data-rss-appearance=luxury][data-rss-tone][data-rss-mode] :is(#stream .flux,.rss-appearance.rss-appearance.rss-appearance,.studio-dialog,.studio-player){border-radius:20px!important;corner-shape:round;}
 :root[data-rss-styled][data-rss-appearance=luxury][data-rss-tone][data-rss-mode] :is(.rss-appearance button,.content-streams a){border-radius:8px!important;}
+/* Brutalism: stream links match the square, heavy-ruled appearance buttons. */
+:root:not(#_)[data-rss-appearance=brutal] .rss-appearance .content-streams a{border:2px solid #000!important;border-radius:0!important;}
+/* Luxury: selected controls sit on a light gold fill, so they keep the dark green lettering. */
+:root:not(#_):not(#_)[data-rss-styled][data-rss-appearance=luxury][data-rss-tone][data-rss-mode] :is(.rss-appearance button[aria-pressed=true],.content-streams a[aria-current]){color:#20382a!important;}
