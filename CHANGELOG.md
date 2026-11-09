@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.2 — 2026-11-09
+
+- Phones: the date separator's faint category watermark no longer overlaps long dates.
+- English README shows an English interface; the Turkish README keeps Turkish screenshots.
+
 ## 0.2.1 — 2026-11-09
 
 - Fix: article and video covers were hidden on FreshRSS 1.30, which renders them as a header item; FreshRSS's loading stripes no longer show around covers.

@@ -7,16 +7,16 @@ A focused reading and viewing interface for FreshRSS: **News, YouTube, Newslette
 Four appearances — **Minimalist, Brutalism, Luxury and Blue Face** — each offer Day, Night and Dark. Stream links and appearance controls share one framed panel in the selected theme's trim and corner geometry. Minimalist and Blue Face sit on a softly drifting light canvas; Brutalism retains its offset shadows.
 
 <p align="center">
-  <img src="docs/desktop-news-minimal-night.jpg" alt="Desktop: News in Minimalist Night" width="49%">
-  <img src="docs/desktop-youtube-blue-face-night.jpg" alt="Desktop: YouTube grid in Blue Face Night" width="49%">
+  <img src="docs/desktop-news-minimal-night-en.jpg" alt="Desktop: News in Minimalist Night" width="49%">
+  <img src="docs/desktop-youtube-blue-face-night-en.jpg" alt="Desktop: YouTube grid in Blue Face Night" width="49%">
 </p>
 <p align="center">
-  <img src="docs/mobile-news-brutalism-day.jpg" alt="Phone: News in Brutalism Day" width="32%">
-  <img src="docs/mobile-youtube-blue-face-day.jpg" alt="Phone: YouTube in Blue Face Day" width="32%">
-  <img src="docs/mobile-newsletters-luxury-night.jpg" alt="Phone: Newsletters in Luxury Night" width="32%">
+  <img src="docs/mobile-news-brutalism-day-en.jpg" alt="Phone: News in Brutalism Day" width="32%">
+  <img src="docs/mobile-youtube-blue-face-day-en.jpg" alt="Phone: YouTube in Blue Face Day" width="32%">
+  <img src="docs/mobile-newsletters-luxury-night-en.jpg" alt="Phone: Newsletters in Luxury Night" width="32%">
 </p>
 
-<sub>Screenshots from the maintainer's own subscriptions with a Turkish interface. Article titles, images and channel art belong to their publishers.</sub>
+<sub>Screenshots from the maintainer's own Turkish subscriptions; titles were translated into English for illustration, text inside images was not. Article titles, images and channel art belong to their publishers.</sub>
 
 ## Why Content Studio?
 
@@ -39,7 +39,7 @@ RSS brings your sources together; Content Studio gives each kind of content a pl
 
 ## Install
 
-Download the [installable ZIP](https://github.com/emrebasaran1/freshrss-content-studio/releases/download/v0.2.1/content-studio-0.2.1.zip) from the [releases page](https://github.com/emrebasaran1/freshrss-content-studio/releases). Extract it first; use the extension folder inside.
+Download the [installable ZIP](https://github.com/emrebasaran1/freshrss-content-studio/releases/download/v0.2.2/content-studio-0.2.2.zip) from the [releases page](https://github.com/emrebasaran1/freshrss-content-studio/releases). Extract it first; use the extension folder inside.
 
 Requirements: **FreshRSS 1.30.1** (tested), PHP 8.1+ with DOM, mbstring and cURL. Use the normal/reading feed view. The global overview is not supported by the enhanced cards.
 
