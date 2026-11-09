@@ -1,3 +1,13 @@
+# Release validation — 0.2.1
+
+Validation date: 2026-11-09, in a disposable FreshRSS 1.30.1 container running a private, read-only copy of a real user database (≈3,500 entries across News, YouTube, Newsletters and Blogs) with only Content Studio enabled. The copy was deleted after testing.
+
+- Real covers revealed a 0.2.0 bug: FreshRSS 1.30 header thumbnails were hidden; fixed and verified for news, YouTube and newsletter cards.
+- Desktop 1280 px and phone 375 px screenshots for all four appearances; YouTube grid without per-day gaps; Luxury and Blue Face selected-button contrast.
+- Package and translation checks, PHP and JavaScript syntax re-run.
+
+---
+
 # Release validation — 0.2.0
 
 Validation date: 2026-11-09. Integration data was synthetic (`tests/seed-demo.php`) in a disposable FreshRSS 1.30.1 / SQLite container with the extension mounted read-only from this repository. No personal database, cookies or feed export was copied.

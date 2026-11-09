@@ -5,15 +5,16 @@
 **Haberler, YouTube, Bültenler ve Bloglar** için tek eklenti. Minimalist, Brutalism, Luxury ve Blue Face temalarının her birinde **Gündüz, Gece ve Dark** bulunur. Akış bağlantıları ve görünüm seçenekleri, temanın kaplama rengi ve köşe biçimiyle çevrili tek bir panelde durur. Minimalist ve Blue Face, yavaşça hareket eden yumuşak bir ışık zemini kullanır.
 
 <p align="center">
-  <img src="docs/desktop-minimal-night.jpg" alt="Masaüstü: Minimalist Gece, birleşik akış ve görünüm paneli" width="640">
+  <img src="docs/desktop-news-minimal-night.jpg" alt="Masaüstü: Haberler, Minimalist Gece" width="49%">
+  <img src="docs/desktop-youtube-blue-face-night.jpg" alt="Masaüstü: YouTube ızgarası, Blue Face Gece" width="49%">
 </p>
 <p align="center">
-  <img src="docs/mobile-blue-face-day.jpg" alt="Telefon: Blue Face Gündüz" width="260">
-  &nbsp;
-  <img src="docs/mobile-luxury-night.jpg" alt="Telefon: Luxury Gece" width="260">
+  <img src="docs/mobile-news-brutalism-day.jpg" alt="Telefon: Haberler, Brutalism Gündüz" width="32%">
+  <img src="docs/mobile-youtube-blue-face-day.jpg" alt="Telefon: YouTube, Blue Face Gündüz" width="32%">
+  <img src="docs/mobile-newsletters-luxury-night.jpg" alt="Telefon: Bültenler, Luxury Gece" width="32%">
 </p>
 
-<sub>Ekran görüntülerinde <code>tests/seed-demo.php</code> ile oluşturulan sentetik demo veriler kullanıldı.</sub>
+<sub>Ekran görüntüleri geliştiricinin kendi abonelikleriyle alındı. Başlıklar, görseller ve kanal görselleri yayıncılarına aittir.</sub>
 
 ## Amaç
 

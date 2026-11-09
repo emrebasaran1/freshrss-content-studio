@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.1 — 2026-11-09
+
+- Fix: article and video covers were hidden on FreshRSS 1.30, which renders them as a header item; FreshRSS's loading stripes no longer show around covers.
+- YouTube grid flows continuously instead of breaking into half-empty rows at each day separator.
+- Luxury: selected buttons keep dark green lettering on their gold fill.
+- Brutalism: stream links are square with heavy rules, like the other controls.
+- README screenshots now show real subscriptions across all four themes and three streams.
+
 ## 0.2.0 — 2026-11-09
 
 - Design refresh ported from the matured personal setup.
