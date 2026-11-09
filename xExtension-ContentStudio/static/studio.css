@@ -97,3 +97,6 @@ html[data-studio-kind=youtube] .thumbnail img{width:100%!important;aspect-ratio:
 .studio-card .flux_header>.item.thumbnail img{display:block!important;background:none!important;}
 /* The video grid flows continuously; per-day separators would leave half-empty rows. */
 html[data-studio-kind=youtube] #stream>.transition{display:none!important;}
+/* Phones: the separator's faint category watermark collides with long dates; the panel already
+   shows the current stream. */
+@media(max-width:600px){:root[data-rss-styled] #stream>.transition .name{display:none!important;}}
