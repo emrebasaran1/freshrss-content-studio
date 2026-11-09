@@ -8,6 +8,7 @@ subprocess.run([sys.executable,str(root/'tools/check_release.py')],check=True)
 version=json.loads((root/'xExtension-ContentStudio/metadata.json').read_text())['version']
 dist=root/'dist';dist.mkdir(exist_ok=True)
 install=[p for p in (root/'xExtension-ContentStudio').rglob('*') if p.is_file()]+[p for p in root.iterdir() if p.is_file() and (p.suffix=='.md' or p.name in ['LICENSE','NOTICE'])]+[p for p in (root/'docs').rglob('*') if p.is_file()]
+install=[p for p in install if p.name!='.DS_Store']
 source=[p for p in root.rglob('*') if p.is_file() and not any(part in ['dist','.git','__pycache__'] for part in p.relative_to(root).parts) and p.name!='.DS_Store']
 for name,paths in [(f'content-studio-{version}.zip',install),(f'content-studio-source-{version}.zip',source)]:
  with ZipFile(dist/name,'w',ZIP_DEFLATED) as archive:
