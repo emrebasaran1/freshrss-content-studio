@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.0 — 2026-11-09
+
+- Design refresh ported from the matured personal setup.
+- One framed top panel: stream links first, then the appearance caption, Day/Night/Dark and the theme row; two-column layout on phones.
+- Four appearances: Nautilus is retired (a saved Nautilus choice opens as Luxury). Luxury uses symmetric 20 px corners.
+- Minimalist and Blue Face sit on a slowly drifting light canvas (paused for reduced motion); Blue Face Night/Dark cards are frosted glass.
+- Blue Face Day: text inside blue boxes is white, text on the page background stays black; white FreshRSS logo.
+- Inter typography when installed, otherwise the platform UI font. No font files are bundled.
+- Mobile: browser status bar and toolbar follow the active theme colour; settings menu drops down under its gear; FreshRSS's fixed bottom bar is hidden; slimmer reader frame so embedded YouTube players show their own settings controls.
+- FreshRSS 1.30 date separators sit on the page canvas instead of a dark band.
+- Fix: the interface no longer silently fails to appear when FreshRSS loads its page context after the extension script.
+
 ## 0.1.0 — 2026-10-20
 
 - Initial portable extension with four user-mapped streams.

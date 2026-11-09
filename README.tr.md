@@ -2,9 +2,18 @@
 
 [English](README.md) · Türkçe
 
-**Haberler, YouTube, Bültenler ve Bloglar** için tek eklenti. Minimalist, Brutalism, Luxury, Blue Face ve Nautilus temalarının her birinde **Gündüz, Gece ve Dark** bulunur. Görünüm seçicisi, temanın kaplama rengi ve köşe biçimiyle çevrilidir.
+**Haberler, YouTube, Bültenler ve Bloglar** için tek eklenti. Minimalist, Brutalism, Luxury ve Blue Face temalarının her birinde **Gündüz, Gece ve Dark** bulunur. Akış bağlantıları ve görünüm seçenekleri, temanın kaplama rengi ve köşe biçimiyle çevrili tek bir panelde durur. Minimalist ve Blue Face, yavaşça hareket eden yumuşak bir ışık zemini kullanır.
 
-![Tema özeti](docs/themes.svg)
+<p align="center">
+  <img src="docs/desktop-minimal-night.jpg" alt="Masaüstü: Minimalist Gece, birleşik akış ve görünüm paneli" width="640">
+</p>
+<p align="center">
+  <img src="docs/mobile-blue-face-day.jpg" alt="Telefon: Blue Face Gündüz" width="260">
+  &nbsp;
+  <img src="docs/mobile-luxury-night.jpg" alt="Telefon: Luxury Gece" width="260">
+</p>
+
+<sub>Ekran görüntülerinde <code>tests/seed-demo.php</code> ile oluşturulan sentetik demo veriler kullanıldı.</sub>
 
 ## Amaç
 
@@ -12,7 +21,9 @@ Kaynaklarını tek yerde toplarken her içerik türünü rahatça okuyabileceği
 
 ## Neler var?
 
-Kapaklı ve kompakt akış, haber gruplama, konu/favori/kaynak simgeleri, tek açık yazı, Bloglar ve Bültenler için yan panel, akış içinde haber okuma, gömülü YouTube izleme ekranı, makale içi görseller ve videolar, düzgün kaydırılabilen tablolar, isteğe bağlı tam metin, Linkding ve seçerek MeTube indirmesi.
+Üstte tek panel (ilk satırda akışlar, altında Gündüz/Gece/Dark ve temalar; telefonda iki sütun), kapaklı ve kompakt akış, haber gruplama, konu/favori/kaynak simgeleri, tek açık yazı, Bloglar ve Bültenler için yan panel, akış içinde haber okuma, gömülü YouTube izleme ekranı, makale içi görseller ve videolar, düzgün kaydırılabilen tablolar, isteğe bağlı tam metin, Linkding ve seçerek MeTube indirmesi.
+
+Telefonda tarayıcının üst ve alt çubukları temanın rengini alır, ayarlar menüsü dişlinin altında açılır, FreshRSS'in sabit alt çubuğu gizlenir ve okuyucu gömülü videolara YouTube'un kendi düğmelerinin sığacağı genişliği verir.
 
 Eklenti arayüzü ile ayarları Türkçe, İngilizce, Almanca, Fransızca, İspanyolca ve Basitleştirilmiş Çince destekler. Yazıları çevirmez; FreshRSS'in kendi menülerinin dilini de FreshRSS belirler.
 
@@ -46,7 +57,7 @@ Sunucu adresi, hesap, çerez, anahtar, özel akış, veritabanı, çalışma ön
 
 ## Kaldırma
 
-Eklentiyi kapat, sonra klasörünü kaldır. Kaynaklar, yazılar, favoriler ve kategoriler korunur. Tarayıcı görünüm tercihleri `content-studio-theme` ve `content-studio-tone` anahtarlarında tutulur. Yazıların tam metin önbellekleri, yazılar temizlenene kadar kalabilir.
+Eklentiyi kapat, sonra klasörünü kaldır. Kaynaklar, yazılar, favoriler ve kategoriler korunur. Tarayıcı görünüm tercihleri `content-studio-theme` ve `content-studio-tone` anahtarlarında tutulur. 0.1.0'da seçilmiş Nautilus teması Luxury olarak açılır. Yazıların tam metin önbellekleri, yazılar temizlenene kadar kalabilir.
 
 ## Yayına hazırlık
 

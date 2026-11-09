@@ -1,4 +1,27 @@
-# Release validation — 0.1.0
+# Release validation — 0.2.0
+
+Validation date: 2026-11-09. Integration data was synthetic (`tests/seed-demo.php`) in a disposable FreshRSS 1.30.1 / SQLite container with the extension mounted read-only from this repository. No personal database, cookies or feed export was copied.
+
+## Passed
+
+- PHP syntax for every PHP/PHTML file; JavaScript syntax for every frontend script (Node 22).
+- 11 core behavior checks, reader boundary/content checks (also with the actual FreshRSS sanitizer), 6 controller request-boundary checks and six-language settings checks — unchanged code paths, re-run.
+- Package scanner: no deployment-specific or excluded references, six complete locales.
+- Browser, 375 px phone and 1280 px desktop: unified panel with four stream links on top and the appearance row below; current stream highlighted.
+- Browser: Minimalist, Brutalism, Luxury and Blue Face in Day and Night render with the new geometry; Blue Face Day keeps white text inside boxes and black text on the canvas.
+- Browser: `theme-color` follows the active surface colour (one meta tag); FreshRSS's bottom navigation is hidden; the phone settings menu opens right under its gear.
+- Browser: the newsletter reader on a 375 px phone gives article content 353 px, above the width at which YouTube's embedded player shows its settings control.
+- Regression found and fixed during validation: when FreshRSS's `main.js` populated `window.context` after the extension script ran, the interface did not appear. The script now waits for `freshrss:globalContextLoaded`.
+
+## Not verified / limits
+
+- No physical iPhone/Safari: browser status-bar tinting was checked through the `theme-color` value, not on a device.
+- Video playback itself, MeTube and Linkding were not exercised (unchanged from 0.1.0).
+- Inter is used only when installed on the device; otherwise the platform UI font is shown.
+
+---
+
+# Release validation — 0.1.0 (previous release)
 
 Validation date: 2026-10-20. All integration data was synthetic in an isolated FreshRSS 1.30.1 / SQLite container. No personal database, cookies or subscription feed export was copied.
 

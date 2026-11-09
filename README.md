@@ -4,9 +4,18 @@
 
 A focused reading and viewing interface for FreshRSS: **News, YouTube, Newsletters and Blogs** in one user extension.
 
-Five appearances — **Minimalist, Brutalism, Luxury, Blue Face and Nautilus** — each offer Day, Night and Dark. The appearance selector has a complete frame using the selected theme's trim and corner geometry. Metallic borders are flat; Brutalism retains its offset shadows.
+Four appearances — **Minimalist, Brutalism, Luxury and Blue Face** — each offer Day, Night and Dark. Stream links and appearance controls share one framed panel in the selected theme's trim and corner geometry. Minimalist and Blue Face sit on a softly drifting light canvas; Brutalism retains its offset shadows.
 
-![Theme overview](docs/themes.svg)
+<p align="center">
+  <img src="docs/desktop-minimal-night.jpg" alt="Desktop: Minimalist Night with the unified stream and appearance panel" width="640">
+</p>
+<p align="center">
+  <img src="docs/mobile-blue-face-day.jpg" alt="Phone: Blue Face Day" width="260">
+  &nbsp;
+  <img src="docs/mobile-luxury-night.jpg" alt="Phone: Luxury Night" width="260">
+</p>
+
+<sub>Screenshots use the synthetic demo data from <code>tests/seed-demo.php</code>.</sub>
 
 ## Why Content Studio?
 
@@ -14,6 +23,7 @@ RSS brings your sources together; Content Studio gives each kind of content a pl
 
 ## Features
 
+- One top panel: stream links on the first row, then Day/Night/Dark and the theme row. It reflows to two columns on phones.
 - Four configurable streams, newest publication first. Map your own existing FreshRSS categories; no bundled subscriptions or fixed category IDs.
 - Compact article cards with covers, favorites, topic labels, source links, optional Linkding bookmarks and dates.
 - News expands in the stream. Blogs and newsletters open in a focused side reader (full width on phones). Only one reader is open at a time.
@@ -23,11 +33,12 @@ RSS brings your sources together; Content Studio gives each kind of content a pl
 - Adjustable duplicate-news grouping and keyword filters, without deleting entries. Priority phrases override unwanted phrases. Both lists start empty.
 - Optional podcast/transcript title filter.
 - Optional Linkding save links and MeTube download queue with manually selected quality. No automatic downloading.
+- Phone-friendly details: the browser status bar and toolbar take the active theme's colour, the settings menu drops down under its gear, FreshRSS's fixed bottom bar is hidden, and the reader gives embedded videos enough width for YouTube's own controls.
 - Extension interface and settings in **English, Turkish, German, French, Spanish and Simplified Chinese**. Automatic language falls back to English. FreshRSS itself controls its own menus and article languages.
 
 ## Install
 
-Download the [installable ZIP](https://github.com/emrebasaran1/freshrss-content-studio/releases/download/v0.1.0/content-studio-0.1.0.zip) from the [releases page](https://github.com/emrebasaran1/freshrss-content-studio/releases). Extract it first; use the extension folder inside.
+Download the [installable ZIP](https://github.com/emrebasaran1/freshrss-content-studio/releases/download/v0.2.0/content-studio-0.2.0.zip) from the [releases page](https://github.com/emrebasaran1/freshrss-content-studio/releases). Extract it first; use the extension folder inside.
 
 Requirements: **FreshRSS 1.30.1** (tested), PHP 8.1+ with DOM, mbstring and cURL. Use the normal/reading feed view. The global overview is not supported by the enhanced cards.
 
@@ -65,7 +76,7 @@ In News, request full text using its button. In Blogs/Newsletters, opening an ar
 - Embedded videos can fail because of publisher restrictions, regional availability, cookies or Safari content blockers. Premium behavior depends on the embedded player and browser, not this extension. YouTube Music or browser blocking rules are outside this package.
 - Channel/source icons use the favicon FreshRSS already provides; this does not scrape private channel profiles or export subscriptions.
 - No telemetry, trackers, external fonts, model APIs or scheduled workers are included. Reading a source loads its images/videos; full-text requests contact the explicitly allowed source. Bookmark/download actions contact the service you configure.
-- Appearance choices live in this browser's local storage; category/service preferences use FreshRSS per-user extension settings.
+- Appearance choices live in this browser's local storage (a saved Nautilus choice from 0.1.0 opens as Luxury); category/service preferences use FreshRSS per-user extension settings.
 - No research or market-data module, server addresses, account credentials, subscription cookies, database, private feeds or runtime caches are distributed.
 
 ## Uninstall
