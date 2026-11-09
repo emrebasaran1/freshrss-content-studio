@@ -49,3 +49,44 @@ html[data-studio-kind=youtube] .thumbnail img{width:100%!important;aspect-ratio:
 #stream>.day,#stream>.stream-title{display:none!important}
 #stream>.pagination{background:var(--rss-bg)!important;color:var(--rss-page-ink)!important}
 :root[data-rss-styled] .btn{box-shadow:none!important}
+
+/* ---- 0.2.0 layout --------------------------------------------------------------------------- */
+
+/* One framed panel: stream links on top, then the caption, Day/Night/Dark and the theme row. */
+:root:not(#_) .rss-appearance{display:grid!important;grid-template-columns:auto 1fr auto;align-items:center;gap:8px 12px;width:calc(100% - 24px);max-width:1080px!important;margin:10px auto 16px;padding:12px 14px!important;box-sizing:border-box;}
+:root:not(#_) .rss-appearance .content-streams{grid-column:1/-1;display:grid;grid-template-columns:repeat(var(--studio-streams,4),minmax(0,1fr));gap:6px;width:100%;max-width:none;margin:0 0 4px;}
+:root:not(#_) .rss-appearance .content-streams a{display:flex;align-items:center;justify-content:center;min-height:38px;min-width:0;margin:0;padding:6px;box-sizing:border-box;border-width:1px;font:700 12px/1.2 var(--rss-font);text-align:center;text-decoration:none;white-space:nowrap;}
+:root:not(#_) .rss-appearance .content-streams a[aria-current]{background:var(--rss-accent)!important;border-color:var(--rss-accent)!important;color:var(--rss-active)!important;text-decoration:none;}
+:root:not(#_) .rss-appearance-caption{grid-column:1;grid-row:2;}
+:root:not(#_) .rss-appearance-choices{grid-column:2;grid-row:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px;min-width:0;}
+:root:not(#_) .rss-appearance-choices button{grid-column:auto!important;font-size:11px!important;}
+:root:not(#_) .rss-appearance-modes{grid-column:3;grid-row:2;display:flex;gap:4px;margin:0;justify-self:end;flex-wrap:nowrap;}
+:root:not(#_) .rss-appearance button{min-height:38px;}
+@media(max-width:768px){
+ :root:not(#_) .rss-appearance{grid-template-columns:1fr auto;gap:8px;padding:10px!important;width:calc(100% - 16px);margin:8px auto 12px;}
+ :root:not(#_) .rss-appearance-modes{grid-column:2;grid-row:2;}
+ :root:not(#_) .rss-appearance-choices{grid-column:1/-1;grid-row:3;}
+ :root:not(#_) .rss-appearance .content-streams a{font-size:11.5px;padding:6px 4px;}
+}
+@media(max-width:440px){
+ :root:not(#_) .rss-appearance .content-streams{grid-template-columns:repeat(2,minmax(0,1fr));}
+ :root:not(#_) .rss-appearance-choices button{font-size:9.5px!important;padding:6px 2px;}
+}
+
+/* FreshRSS's fixed previous/top/next bar duplicates the stream; pages end with the content. */
+:root[data-rss-styled] #nav_entries{display:none!important;}
+
+/* Mobile: the settings menu drops down right under its gear instead of a mid-screen sheet. */
+@media(max-width:840px){
+ :root:not(#_) header.header .item.configure .dropdown{position:relative;}
+ :root:not(#_) header.header .item.configure .dropdown-menu{position:absolute!important;top:calc(100% + 6px)!important;right:0!important;left:auto!important;bottom:auto!important;width:min(260px,calc(100vw - 24px))!important;height:auto!important;max-height:calc(100dvh - 90px)!important;margin:0!important;overflow-y:auto!important;transform:none!important;border-radius:12px!important;z-index:1000!important;}
+}
+
+/* Phones: a slimmer reader frame gives embedded videos enough width for YouTube's own controls. */
+@media(max-width:600px){
+ .studio-reader{padding:14px 10px;}
+ .studio-reader .studio-body iframe{margin-left:0;margin-right:0;}
+}
+
+/* FreshRSS 1.30 date separators ("Received today …") sit on the page canvas, not in a dark band. */
+:root[data-rss-styled] #stream>.transition{background:transparent!important;border:0!important;box-shadow:none!important;color:var(--rss-page-ink)!important;}

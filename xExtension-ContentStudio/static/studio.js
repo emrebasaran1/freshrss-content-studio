@@ -3,6 +3,7 @@
  const core=window.ContentStudioCore,root=document.documentElement;
  let cfg,m,t,theme='minimal',tone='night',kind='',scheduled=false,active=null,player=null,pane=null;
  const tracked=new WeakSet(),rows=[],cache=new Map();
+ const THEMES=[['minimal','Minimalist'],['brutal','Brutalism'],['luxury','Luxury'],['rolex-blue','Blue Face']];
  function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
  function action(text,label,run){const b=el('button','studio-action',text);b.type='button';b.title=label;b.setAttribute('aria-label',label);b.onclick=e=>{e.preventDefault();e.stopPropagation();run(b);};return b;}
  function external(text,label,url){const a=el('a','studio-action',text);a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.title=label;a.setAttribute('aria-label',label);return a;}
@@ -12,18 +13,34 @@
   try{localStorage.setItem('content-studio-theme',theme);localStorage.setItem('content-studio-tone',tone);}catch{}
   document.querySelectorAll('[data-studio-theme]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.studioTheme===theme)));
   document.querySelectorAll('[data-studio-tone]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.studioTone===tone)));
+  browserChrome();
+ }
+ // Mobile browsers tint the status bar and toolbar from theme-color and the page background;
+ // FreshRSS ships fixed values, so mirror the active theme's surface colour instead.
+ function browserChrome(){
+  const cs=getComputedStyle(root),color=(cs.getPropertyValue('--rss-surface')||cs.getPropertyValue('--rss-bg')).trim();
+  if(!color||!document.head)return;
+  document.querySelectorAll('meta[name="theme-color"]').forEach((meta,i)=>{if(i)meta.remove();});
+  let meta=document.querySelector('meta[name="theme-color"]');
+  if(!meta){meta=el('meta');meta.name='theme-color';document.head.append(meta);}
+  meta.removeAttribute('media');meta.content=color;
+  const status=document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');if(status)status.content=tone==='day'?'default':'black';
+  root.style.colorScheme=tone==='day'?'light':'dark';
  }
  function appearance(){
-  const bar=el('section','rss-appearance');bar.setAttribute('aria-label',t('appearance'));bar.append(el('span','rss-appearance-caption',t('appearance')));
-  const choices=el('div','rss-appearance-choices');choices.setAttribute('role','group');choices.setAttribute('aria-label',t('themes'));
-  for(const [id,label] of [['minimal','Minimalist'],['brutal','Brutalism'],['luxury','Luxury'],['rolex-blue','Blue Face'],['nautilus','Nautilus']]){
-   const b=action(label,label,()=>{theme=id;apply();});b.dataset.studioTheme=id;choices.append(b);
-  }bar.append(choices);
+  // One panel: the stream links form its top row, the appearance controls sit underneath.
+  const bar=el('section','rss-appearance');bar.setAttribute('aria-label',t('appearance'));
+  const nav=el('nav','content-streams');nav.setAttribute('aria-label',t('streams'));
+  for(const k of ['news','youtube','newsletters','blogs'])if(Number(cfg.categories[k])>0){const u=new URL(location.href);u.search='';u.searchParams.set('get','c_'+cfg.categories[k]);u.searchParams.set('order','DESC');u.searchParams.set('sort','date');u.searchParams.set('state','3');const a=el('a','',t(k));a.href=u.href;if(kind===k)a.setAttribute('aria-current','page');nav.append(a);}
+  if(nav.childElementCount){nav.style.setProperty('--studio-streams',String(nav.childElementCount));bar.append(nav);}
+  bar.append(el('span','rss-appearance-caption',t('appearance')));
   const modes=el('div','rss-appearance-modes');modes.setAttribute('role','group');modes.setAttribute('aria-label',t('mode'));
   for(const id of ['day','night','dark']){const b=action(t(id),t(id),()=>{tone=id;apply();});b.dataset.studioTone=id;modes.append(b);}bar.append(modes);
-  const anchor=document.querySelector('#global .nav_menu')||document.querySelector('header.header');if(!anchor)return;anchor.after(bar);
-  const nav=el('nav','content-streams');nav.setAttribute('aria-label',t('streams'));
-  for(const k of ['news','youtube','newsletters','blogs'])if(Number(cfg.categories[k])>0){const u=new URL(location.href);u.search='';u.searchParams.set('get','c_'+cfg.categories[k]);u.searchParams.set('order','DESC');u.searchParams.set('sort','date');u.searchParams.set('state','3');const a=el('a','',t(k));a.href=u.href;if(kind===k)a.setAttribute('aria-current','page');nav.append(a);}bar.before(nav);apply();
+  const choices=el('div','rss-appearance-choices');choices.setAttribute('role','group');choices.setAttribute('aria-label',t('themes'));
+  for(const [id,label] of THEMES){
+   const b=action(label,label,()=>{theme=id;apply();});b.dataset.studioTheme=id;choices.append(b);
+  }bar.append(choices);
+  const anchor=document.querySelector('#global .nav_menu')||document.querySelector('header.header');if(!anchor)return;anchor.after(bar);apply();
  }
  function modal(label,build){const d=el('dialog','studio-dialog');d.setAttribute('aria-label',label);d.append(el('h2','',label));build(d);d.append(action('×',t('close'),()=>{d.close();d.remove();}));d.addEventListener('close',()=>d.remove(),{once:true});document.body.append(d);d.showModal();}
  function cleanContent(source,cover){
@@ -117,10 +134,13 @@
  }
  function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(()=>{scheduled=false;prepare();});}
  function init(){
-  cfg=window.context?.extensions?.contentStudio;if(!cfg||!core)return;m=cfg.messages||{};t=key=>m[key]||key;
+  // FreshRSS fills window.context from main.js, which may run after this script; wait for it.
+  if(!window.context){document.addEventListener('freshrss:globalContextLoaded',init,{once:true});return;}
+  cfg=window.context.extensions?.contentStudio;if(!cfg||!core||root.dataset.rssStyled)return;m=cfg.messages||{};t=key=>m[key]||key;
   const get=new URLSearchParams(location.search).get('get');kind=Object.keys(cfg.categories).find(k=>Number(cfg.categories[k])>0&&get==='c_'+cfg.categories[k])||'';
   try{theme=localStorage.getItem('content-studio-theme')||'minimal';tone=localStorage.getItem('content-studio-tone')||'night';}catch{}
-  if(!['minimal','brutal','luxury','rolex-blue','nautilus'].includes(theme))theme='minimal';if(!['day','night','dark'].includes(tone))tone='night';
+  if(theme==='nautilus')theme='luxury';// Nautilus was retired in 0.2.0; its closest family is Luxury.
+  if(!THEMES.some(([id])=>id===theme))theme='minimal';if(!['day','night','dark'].includes(tone))tone='night';
   appearance();root.dataset.studioKind=kind;prepare();const stream=document.getElementById('stream');if(stream)new MutationObserver(schedule).observe(stream,{childList:true,subtree:true});
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
